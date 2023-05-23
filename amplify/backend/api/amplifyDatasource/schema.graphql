@@ -1,0 +1,53 @@
+type Task
+  @model
+  @auth(rules: [{ allow: owner }, { allow: groups, groups: ["Admin"] }]) {
+  id: ID!
+  title: String!
+  description: String
+  status: String
+}
+type Note
+  @model
+  @auth(rules: [{ allow: owner }, { allow: groups, groups: ["Admin"] }]) {
+  id: ID!
+  content: String!
+}
+
+type Enrolment
+  @model
+  @auth(
+    rules: [
+      { allow: owner }
+      { allow: groups, groups: ["Admin"] }
+      { allow: private, provider: iam }
+    ]
+  ) {
+  id: ID!
+  bands: String
+  status: String
+  rate: String
+  term: String
+  bandMembershipType: String
+  bandDesc: String
+  bandRate: Float
+  lessons: String
+  lessonDesc: String
+  lessonRate: Float
+  stripeRef: String
+  total: Float
+  giftAidConsent: Boolean
+  paymentName: String
+  city: String
+  line1: String
+  line2: String
+  postCode: String
+  email: String
+  firstname: String
+  familyname: String
+  instrumentsPlayed: [InstrumentBand]
+}
+
+type InstrumentBand {
+  Band: String
+  Instrument: String
+}

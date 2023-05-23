@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import { NoteCreateForm, ItemCardCollection, NavBar } from "./ui-components";
+import { View } from "@aws-amplify/ui-react";
+import { Amplify, Hub, Auth } from "aws-amplify";
+import awsconfig from "./aws-exports";
+import "@aws-amplify/ui-react/styles.css";
 
-function App() {
+Amplify.configure(awsconfig);
+
+// Create listener
+const listener = Hub.listen("datastore", async (hubData) => {
+  const { event, data } = hubData.payload;
+  console.log(`User has a network connection:`, event, data);
+});
+
+function App({ otherthing, user }) {
+  // {Auth.currentUserInfo().username}
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <NavBar width="100vw" />
+      <View maxWidth="400px">
+        Logged in as {user.username}
+        <NoteCreateForm />
+        <ItemCardCollection maxWidth={"400px"} />
+      </View>
     </div>
   );
 }
