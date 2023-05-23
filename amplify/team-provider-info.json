@@ -23,6 +23,12 @@
           "appId": "dbjvss4d71o25",
           "type": "manual"
         }
+      },
+      "function": {
+        "emailtrigger": {
+          "deploymentBucketName": "amplify-amplify-datastore-dev-121952-deployment",
+          "s3Key": "amplify-builds/emailtrigger-38646d593751704c4c34-build.zip"
+        }
       }
     }
   }

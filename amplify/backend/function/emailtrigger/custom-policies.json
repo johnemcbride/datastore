@@ -1,0 +1,8 @@
+[
+  {
+    "Action": ["ses:SendEmail"],
+    "Resource": [
+      "arn:aws:ses:eu-west-2:228447865234:identity/eastlondoncommunity.band"
+    ]
+  }
+]
